@@ -1,0 +1,29 @@
+---
+title: "DiagramaConceptual"
+author: "Yanina Bellini Saibene"
+date: "15/5/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(DiagrammeR)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+DiagrammeR("
+graph LR;
+  A[Gráficos] -->|tienen| B[Gramática];
+  A -->|tipo| C[Barra];
+  A -->|tipo| D[Puntos];
+  A -->|tipo| E[Lineas];
+  B -->|son| F[Reglas];
+  B -->|compuesta por| G[Variables de datos];
+  B -->|compuesta por| H[Atributos estéticos];
+  B -->|compuesta por| I[Objetos Geométricos];
+  F -->|combinan| J[capas]
+  K[ggplot2] -->|implementa| B
+  
+")
+```
+

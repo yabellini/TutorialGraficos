@@ -1,0 +1,115 @@
+---
+title: "Gráficos con R"
+output:
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+runtime: shiny_prerendered
+tutorial:
+  version: 1.0
+description: "Tutorial para generar gráficos en R. Festejando a "
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(DiagrammeR)
+library(ggplot2)
+library(gapminder)
+library(dplyr)
+
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+## Presentación tutorial de gráficos con R
+
+### Mapa conceptual
+
+Estos son los conceptos y relaciones que vamos a cubrir durante el tutorial:
+
+```{r echo=FALSE}
+DiagrammeR("
+graph LR;
+  A[Gráficos] -->|tienen| B[Gramática];
+  A -->|tipo| C[Barra];
+  A -->|tipo| D[Puntos];
+  A -->|tipo| E[Lineas];
+  B -->|son| F[Reglas];
+  B -->|compuesta por| G[Variables de datos];
+  B -->|compuesta por| H[Atributos estéticos];
+  B -->|compuesta por| I[Objetos Geométricos];
+  F -->|combinan| J[capas]
+  K[ggplot2] -->|implementa| B
+  
+")
+```
+
+### ¿Quién sos vos?
+
+En este tutorial vamos a reparar como generar una serie de gráficos básicos con R utilizando el paquete `ggplot2`.  cuando generamos este tutorial pensamos en las siguientes personas:
+
+*Felicitas* está dando sus primeros pasos como investigadora. Debe hacer informes que incluyan estadísticas como parte de sus actividades. Usa Excel e InfoStat (un programa de estadísticas basado en menús) para registrar sus datos y realizar sus cálculos; y luego usa Word para escribir sus informes copiando y pegando desde los otros softwares. Ha visto gráficos e informes PDF generados en R por sus compañeras de trabajo. La estética de los gráficos y la posibilidad de automatizar algunos de sus informes hizo que se interese en aprender a usar R. No tiene mucho tiempo para ir a cursos formales, ya se instaló R y RStudio y quiere empezar a aprender por su cuenta hasta que pueda asisitir a algun meetup de R-Ladies en su ciudad, donde sus compañeras aprendieron a utilizar estas herramientas.
+
+*Sebastián* es un entusiasta del análisis de datos, está cursando el último año de su carrera de grado en economía y aunque en su disciplina se usan otros software, ha escuchado mucho sobre R ultimamente y ve que hay una gran movida comunitaria en la región especialmente en twitter.  Descubrió que hay desafíos semanales para aprender diferentes herramientas y justo este mes se hace uno de 30 días de gráficos.  Le parece una gran oportunidad para aprender, pero no sabe muy bien por donde empezar a aprender como graficar con R porque cuando busca en Internet aparecen códigos muy diferentes para el mismo tipo de gráfico.
+
+
+### Licencia
+
+Este curso se comparte bajo la licencia [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/deed.es_ES).
+
+
+## Introducción
+
+Vamos a utilizar el paquete `ggplot2` que implementa la _gramática de los gráficos_ desarrollada por Leland Wilkinson.  Esta gramática define un _conjunto de reglas_ para construir _gráficos estadísticos combinando_ diferentes tipos de _capas_.
+
+La gramática nos dice que:
+
+> Un gráfico es un *mapeo* de variables de *datos* a atributos *estéticos* de objetos *geométricos*. 
+
+Específicamente, podemos *dividir un gráfico* en los siguientes *tres componentes esenciales*:
+
+1. *Datos (_data_*, en inglés): el conjunto de datos compuesto por variables que mapeamos.
+
+2. *Geometría (_geom_*, por _geometry_ en inglés): el objeto geométrico en cuestión. Se refiere al tipo de objeto que compone el gráfico, por ejemplo: puntos, líneas y barras.
+
+3. *Estética (aes*, por _aesthetic_ en inglés): atributos estéticos del objeto geométrico. Por ejemplo, posición x,  y, color, forma y tamaño. Cada atributo estético se puede asignar a una variable en nuestro conjunto de datos.
+
+### Ejemplo de la gramática en un gráfico
+
+Vamos a ver un ejemplo de estos componentes en un gráfico, para ello vamos a utilizar el paquete `gapminder` que ya instalamos y cargamos por ti.
+
+Para ver los datos de `gapminder`, escribe `gapminder` en el bloque de código que aparece abajo y luego haz click en el botón _"Submit Answer"_ (enviar respuesta, en inglés).
+
+```{r gapminder0, exercise = TRUE}
+
+
+```
+
+```{r gapminder0-solution}
+gapminder
+```
+
+### A graficar
+
+Buen trabajo! Usaremos fragmentos de código interactivos como este en el tutorial. Siempre que encuentres uno, puedes hacer clic en _Submit Answer_ para ejecutar el código escrito. Si hay un botón _Hint_ o _Solución_, puedes hacer clic para recibir ayuda y/o ver la respuesta.
+
+#### 
+
+ggplot(data = gapminder, mapping = aes(
+x = gdpPercap, y = lifeExp, color=continent, size=pop))+
+  geom_point()
+  
+
+## Fuentes
+
+A ModernDive into R and the tidyverse. Chester Ismay and Albert Y. Kim, Foreword by Kelly S. McConville. November 25, 2019
+
+https://github.com/rstudio/learnr/blob/cf5fe34eaee039986596e1578bac0d5ffdb01d06/inst/tutorials/quiz_question/quiz_question.Rmd#L27-L36
+
+https://moderndive.com/2-viz.html
+
+https://github.com/rstudio-education/primers
+
+https://github.com/rstudio-education/primers/blob/master/basics/02-Vis-Basics/02-Vis-Basics.Rmd
+
+https://github.com/rstudio/learnr
