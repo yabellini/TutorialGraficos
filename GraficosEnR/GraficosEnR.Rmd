@@ -34,6 +34,7 @@ graph LR;
   A -->|tipo| C[Barra];
   A -->|tipo| D[Puntos];
   A -->|tipo| E[Lineas];
+  A -->|tipo| L[Areas];
   B -->|son| F[Reglas];
   B -->|compuesta por| G[Variables de datos];
   B -->|compuesta por| H[Atributos estéticos];
@@ -93,23 +94,149 @@ gapminder
 
 Buen trabajo! Usaremos fragmentos de código interactivos como este en el tutorial. Siempre que encuentres uno, puedes hacer clic en _Submit Answer_ para ejecutar el código escrito. Si hay un botón _Hint_ o _Solución_, puedes hacer clic para recibir ayuda y/o ver la respuesta.
 
-#### 
+#### Veamos un gráfico a través de la gramática de los gráficos.
 
-ggplot(data = gapminder, mapping = aes(
-x = gdpPercap, y = lifeExp, color=continent, size=pop))+
-  geom_point()
+El siguiente gráfico está realizado con los datos de `gapminder`, intentemos reconocer que variables y secciones corresponden a la gramática de gráficos:
+
+```{r echo=TRUE}
+
+ggplot(data = gapminder, 
+       mapping = aes(x = gdpPercap, y = lifeExp, color=continent, size=pop))+
+    geom_point()
+
+```
+
+Mirando el código y el gráfico, podemos indentificar que:
+
+* Datos: el *nombre del conjunto de datos* (gapminder) se asigna al atributo `data`
+* Estética: el eje `x` representa la variable `gdpPercap`, el eje `y` representa la variable `lifeExp`, el `color` representa la variable `continent` y el tamaño (`size`) representa la variable población.
+* Geometría: generamos un gráfico de puntos, como indica `geom_point()`
+
+
+### Cambiemos algunas propiedades
+
+Supongamos que queremos cambiar los ejes del gráfico, ¿cómo cambiarías el código anterior para lograr ese cambio?
+
+```{r grafico_puntos, exercise=TRUE}
+
+ggplot(data = gapminder, 
+       mapping = aes(x = gdpPercap, y = lifeExp, color=continent, size=pop))+
+    geom_point()
+
+```
+
+```{r grafico_puntos-hint}
+
+Recuerda que los ejes están representados por las letras x (horizontal) e y (vertical)
+
+```
+### Mensaje
+
+Bien hecho!, además del gráfico de puntos, indicado en el código anterior por `geom_point`, tenemos otros tipos de gráficos, por ejemplo gráficos de líneas, de barras, de áreas o histogramas.  
+
+
+```{r quiz}
+quiz(
+  question("¿Cómo te parece que pueden llamarse las geometrías para los gráficos de lineas y de áreas?", correct = "Buen trabajo!, la palabra line siginifica linea en inglés y area significa área.", allow_retry = TRUE,
+    answer("geom_line() y geom_bar()", message = "En general a la palabra geom_ se le agrega el nombre de la geometría en Inglés"),
+    answer("geom_linea(), geom_sup()", message = "En general a la palabra geom_ se le agrega el nombre de la geometría en Inglés"),
+    answer("geom_area(), geom_histogram()", message = "En general a la palabra geom_ se le agrega el nombre de la geometría en Inglés"),
+    answer("geom_line(), geom_area()", correct = TRUE)
+  ), caption = "Gemetrás con ggplot2"
+)
+```
+
+### Hagamos un gráfico de lineas
+
+Vamos a realizar otros gráficos utilizando los datos en `gapminder`.  Para utilizar el gráfico de lineas, vamos a ver la evolución de la población de Argentina en la serie de datos disponible.
+
+Ya hemos filtrado los datos necesarios en el dataset `Argentina` y está disponible en el entorno para que lo puedas utilizar. A continuación te mostramos los primeros registros de este dataset. 
+
+```{r}
+Argentina <- gapminder %>%
+  filter(country == 'Argentina')
+
+head(Argentina)
   
+```
 
+Modifica el siguiente código para generar un gráfico que lineas que nos muestre los años en el eje x y la población en el eje y.
+
+```{r grafico_lineas, exercise=TRUE}
+
+ggplot(data = ________, 
+       mapping = aes(x = _______, y = ________))+
+    geom_line()
+
+
+```
+
+```{r grafico_lineas-hint}
+
+- La variable que contiene los años se llama year
+- La variable que contiene la población se llama pop
+
+```
+
+
+```{r grafico_lineas-solution}
+
+ggplot(data = Argentina, 
+       mapping = aes(x = year, y = pop))+
+    geom_line()
+
+
+```
+
+### Hagamos un gráfico de barras
+
+Hay dos formas de hacer un gráfico de barras en `ggplot2`, una forma es utilizando `geom_bar()` y otra es utilizando `geom_col()`.
+
+
+* `geom_bar()` : utilizamos esta geometría cuando *no tenemos* una variable que contenga el cálculo de la cantidad de la variable categórica que queremos gráficar.  El cálculo se realizará para generar el gráfico.
+
+* `geom_col()` : utilizamos esta geometría cuando *tenemos* en nuestro set de datos una variable con el cálculo de la cantidad de la variable categórica que queremos graficar, con la estética *del eje y* asignada a *la variable que tiene esa cantidad*.
+
+Vamos a transformar el gráfico anterior a barras.  ¿cómo realizarias este cambio?, ¿Cuál de las dos opciones de geometrías utilizarías?
+
+Modifica el siguiente código para generar un gráfico que barras que nos muestre los años en el eje x y la población en el eje y.
+
+```{r grafico_barras, exercise=TRUE}
+
+ggplot(data = Argentina, 
+       mapping = aes(x = year, y = pop))+
+    geom_______()
+
+
+```
+
+```{r grafico_barras-hint}
+
+La variable pop ya contiene la cantidad de la población calculada
+```
+
+
+```{r grafico_barras-solution}
+
+ggplot(data = Argentina, 
+       mapping = aes(x = year, y = pop))+
+    geom_col()
+
+```
+
+### Mensaje
+
+Bien hecho!, utilizamos `geom_col()` porque ya contamos con una variable que tiene calculada la cantidad que queremos representar.
+
+
+Esperamos que esta pequeña introducción a los gráficos en R te sea de utilidad.  A continuación te dejamos una serie de materiales que pueden resultar muy útiles para continuar aprendiendo y en los cuales basamos este tutorial.
+
+-  [Guía rápida en Español de ggplot2](https://github.com/rstudio/cheatsheets/raw/master/translations/spanish/ggplot2.pdf)
+
+- [RStudio primers en visualización de datos (en Inglés)](https://rstudio.cloud/learn/primers)
+
+- [Capítulo de Visualización de A ModernDive into R and the tidyverse. Chester Ismay and Albert Y. Kim, Foreword by Kelly S. McConville. November 25, 2019 (en Inglés)](https://moderndive.com/2-viz.html)
 ## Fuentes
 
-A ModernDive into R and the tidyverse. Chester Ismay and Albert Y. Kim, Foreword by Kelly S. McConville. November 25, 2019
+- [The R Graph Gallery](https://www.r-graph-gallery.com/)
 
-https://github.com/rstudio/learnr/blob/cf5fe34eaee039986596e1578bac0d5ffdb01d06/inst/tutorials/quiz_question/quiz_question.Rmd#L27-L36
-
-https://moderndive.com/2-viz.html
-
-https://github.com/rstudio-education/primers
-
-https://github.com/rstudio-education/primers/blob/master/basics/02-Vis-Basics/02-Vis-Basics.Rmd
-
-https://github.com/rstudio/learnr
