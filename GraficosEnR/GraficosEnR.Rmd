@@ -7,7 +7,7 @@ output:
 runtime: shiny_prerendered
 tutorial:
   version: 1.0
-description: "Tutorial para generar gráficos en R. Festejando a "
+description: "Tutorial para generar gráficos en R. Festejando a Florence Nightingale"
 ---
 
 ```{r setup, include=FALSE}
@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 
-## Presentación tutorial de gráficos con R
+## Presentación 
 
 ### Mapa conceptual
 
@@ -49,14 +49,14 @@ graph LR;
 
 En este tutorial vamos a reparar como generar una serie de gráficos básicos con R utilizando el paquete `ggplot2`.  cuando generamos este tutorial pensamos en las siguientes personas:
 
-*Felicitas* está dando sus primeros pasos como investigadora. Debe hacer informes que incluyan estadísticas como parte de sus actividades. Usa Excel e InfoStat (un programa de estadísticas basado en menús) para registrar sus datos y realizar sus cálculos; y luego usa Word para escribir sus informes copiando y pegando desde los otros softwares. Ha visto gráficos e informes PDF generados en R por sus compañeras de trabajo. La estética de los gráficos y la posibilidad de automatizar algunos de sus informes hizo que se interese en aprender a usar R. No tiene mucho tiempo para ir a cursos formales, ya se instaló R y RStudio y quiere empezar a aprender por su cuenta hasta que pueda asisitir a algun meetup de R-Ladies en su ciudad, donde sus compañeras aprendieron a utilizar estas herramientas.
+**Felicitas** está dando sus primeros pasos como investigadora. Debe hacer informes que incluyan estadísticas como parte de sus actividades. Usa Excel e InfoStat (un programa de estadísticas basado en menús) para registrar sus datos y realizar sus cálculos; y luego usa Word para escribir sus informes copiando y pegando desde los otros softwares. Ha visto gráficos e informes PDF generados en R por sus compañeras de trabajo. La estética de los gráficos y la posibilidad de automatizar algunos de sus informes hizo que se interese en aprender a usar R. No tiene mucho tiempo para ir a cursos formales, ya se instaló R y RStudio y quiere empezar a aprender por su cuenta hasta que pueda asisitir a algun meetup de R-Ladies en su ciudad, donde sus compañeras aprendieron a utilizar estas herramientas.
 
-*Sebastián* es un entusiasta del análisis de datos, está cursando el último año de su carrera de grado en economía y aunque en su disciplina se usan otros software, ha escuchado mucho sobre R ultimamente y ve que hay una gran movida comunitaria en la región especialmente en twitter.  Descubrió que hay desafíos semanales para aprender diferentes herramientas y justo este mes se hace uno de 30 días de gráficos.  Le parece una gran oportunidad para aprender, pero no sabe muy bien por donde empezar a aprender como graficar con R porque cuando busca en Internet aparecen códigos muy diferentes para el mismo tipo de gráfico.
+**Sebastián** es un entusiasta del análisis de datos, está cursando el último año de su carrera de grado en economía y aunque en su disciplina se usan otros software, ha escuchado mucho sobre R ultimamente y ve que hay una gran movida comunitaria en la región especialmente en twitter.  Descubrió que hay desafíos semanales para aprender diferentes herramientas y justo este mes se hace uno de 30 días de gráficos.  Le parece una gran oportunidad para aprender, pero no sabe muy bien por donde empezar a aprender como graficar con R porque cuando busca en Internet aparecen códigos muy diferentes para el mismo tipo de gráfico.
 
 
 ### Licencia
 
-Este curso se comparte bajo la licencia [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/deed.es_ES).
+Este curso se comparte bajo la licencia [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/deed.es_ES) y fue realizado por [Yanina Bellini Saibene](https://yabellini.netlify.app/)
 
 
 ## Introducción
@@ -90,11 +90,13 @@ Para ver los datos de `gapminder`, escribe `gapminder` en el bloque de código q
 gapminder
 ```
 
-### A graficar
+### Mensaje
 
 Buen trabajo! Usaremos fragmentos de código interactivos como este en el tutorial. Siempre que encuentres uno, puedes hacer clic en _Submit Answer_ para ejecutar el código escrito. Si hay un botón _Hint_ o _Solución_, puedes hacer clic para recibir ayuda y/o ver la respuesta.
 
-#### Veamos un gráfico a través de la gramática de los gráficos.
+## A graficar
+
+### Veamos un gráfico a través de la gramática de los gráficos.
 
 El siguiente gráfico está realizado con los datos de `gapminder`, intentemos reconocer que variables y secciones corresponden a la gramática de gráficos:
 
@@ -228,6 +230,7 @@ ggplot(data = Argentina,
 
 Bien hecho!, utilizamos `geom_col()` porque ya contamos con una variable que tiene calculada la cantidad que queremos representar.
 
+## Fuentes
 
 Esperamos que esta pequeña introducción a los gráficos en R te sea de utilidad.  A continuación te dejamos una serie de materiales que pueden resultar muy útiles para continuar aprendiendo y en los cuales basamos este tutorial.
 
